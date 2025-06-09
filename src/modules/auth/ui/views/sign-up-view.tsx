@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { z } from "zod/v4";
 
 const formSchema = z
@@ -54,10 +55,32 @@ export function SignUpView() {
     setError(null);
     setPending(true);
 
-    await authClient.signUp.email(data, {
-      onSuccess: () => router.push("/"),
-      onError: ({ error }) => setError(error.message),
-    });
+    await authClient.signUp.email(
+      {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        callbackURL: "/",
+      },
+      {
+        onSuccess: () => router.push("/"),
+        onError: ({ error }) => setError(error.message),
+      }
+    );
+
+    setPending(false);
+  };
+
+  const onSocial = async (provider: "github" | "google") => {
+    setError(null);
+    setPending(true);
+
+    await authClient.signIn.social(
+      { provider, callbackURL: "/" },
+      {
+        onError: ({ error }) => setError(error.message),
+      }
+    );
 
     setPending(false);
   };
@@ -174,11 +197,21 @@ export function SignUpView() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <Button variant="outline" type="button" disabled={pending}>
-                    Google
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={pending}
+                    onClick={() => onSocial("google")}
+                  >
+                    <FaGoogle />
                   </Button>
-                  <Button variant="outline" type="button" disabled={pending}>
-                    GitHub
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={pending}
+                    onClick={() => onSocial("github")}
+                  >
+                    <FaGithub />
                   </Button>
                 </div>
 

@@ -13,7 +13,7 @@ export function HomeView() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 p-4">
       <p>Bem vindo, {session.user.name}!</p>
 
       <Button
@@ -22,7 +22,6 @@ export function HomeView() {
             fetchOptions: { onSuccess: () => router.push("/sign-in") },
           })
         }
-        variant="outline"
       >
         Sair
       </Button>

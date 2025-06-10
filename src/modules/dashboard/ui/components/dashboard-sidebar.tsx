@@ -47,7 +47,7 @@ export function DashboardSidebar() {
     <Sidebar>
       <SidebarHeader className="text-sidebar-accent-foreground">
         <Link href="/" className="flex items-center gap-2 px-2 pt-2">
-          <Image src="/logo.svg" alt="meetAI" height={36} width={36} />
+          <Image src="/logo.svg" alt="meetAI" height={29} width={36} />
           <p className="tex-2xl font-semibold">meetAI</p>
         </Link>
       </SidebarHeader>

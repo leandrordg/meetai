@@ -25,7 +25,7 @@ export function AgentsViewLoading() {
 export function AgentsViewError() {
   return (
     <ErrorState
-      title="Erro ao carregar agentes"
+      title="Erro ao carregar os agentes"
       description="Tente recarregar a página ou volte mais tarde."
     />
   );

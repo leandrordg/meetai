@@ -117,13 +117,13 @@ export function DashboardUserButton() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer flex items-center justify-between">
+        <DropdownMenuItem className="flex items-center justify-between cursor-pointer">
           Pagamento
           <CreditCardIcon className="size-4" />
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onLogout}
-          className="cursor-pointer flex items-center justify-between"
+          className="flex items-center justify-between cursor-pointer"
         >
           Sair
           <LogOutIcon className="size-4" />

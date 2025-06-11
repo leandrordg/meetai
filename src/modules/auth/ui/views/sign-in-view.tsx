@@ -186,7 +186,7 @@ export function SignInView() {
       </Card>
 
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        Ao clicar em "Continuar", você concorda com nossos{" "}
+        Ao clicar em &quot;Continuar&quot;, você concorda com nossos{" "}
         <Link href="/terms-of-service">Termos de Serviço</Link> e{" "}
         <Link href="/privacy-policy">Política de Privacidade</Link>.
       </div>

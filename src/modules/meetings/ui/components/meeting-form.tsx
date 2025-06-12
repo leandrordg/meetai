@@ -175,7 +175,7 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
               </Button>
             )}
             <Button type="submit" disabled={isPending}>
-              {isEdit ? "Salvar alterações" : "Criar agente"}
+              {isEdit ? "Salvar alterações" : "Criar encontro"}
             </Button>
           </div>
         </form>

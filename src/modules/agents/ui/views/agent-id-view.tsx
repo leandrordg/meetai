@@ -6,6 +6,7 @@ import { LoadingState } from "@/components/loading-state";
 import { Badge } from "@/components/ui/badge";
 import { useConfirm } from "@/hooks/use-confirm";
 import { AgentIdViewHeader } from "@/modules/agents/ui/components/agent-id-view-header";
+import { UpdateAgentDialog } from "@/modules/agents/ui/components/update-agent-dialog";
 import { useTRPC } from "@/trpc/client";
 import {
   useMutation,
@@ -16,7 +17,6 @@ import { VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { UpdateAgentDialog } from "../components/update-agent-dialog";
 
 interface Props {
   agentId: string;

@@ -1,5 +1,5 @@
 import { ResponsiveDialog } from "@/components/responsive-dialog";
-import { AgentForm } from "./agent-form";
+import { AgentForm } from "@/modules/agents/ui/components/agent-form";
 
 interface Props {
   open: boolean;

@@ -119,7 +119,7 @@ export function DashboardSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="text-white">
+      <SidebarFooter>
         <DashboardUserButton />
       </SidebarFooter>
     </Sidebar>

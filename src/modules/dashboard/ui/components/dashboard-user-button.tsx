@@ -41,13 +41,13 @@ export function DashboardUserButton() {
 
   if (isPending || !data?.user)
     return (
-      <Skeleton className="w-full h-16 p-3 bg-white/5 border border-border/10" />
+      <Skeleton className="gap-3 p-3 h-16 w-full flex items-center justify-between overflow-hidden rounded-lg border border-transparent from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50" />
     );
 
   if (isMobile) {
     return (
       <Drawer>
-        <DrawerTrigger className="rounded-lg border border-border/10 gap-3 p-3 h-16 w-full flex items-center justify-between bg-white/5 hover:bg-white/10 overflow-hidden">
+        <DrawerTrigger className="gap-3 p-3 h-16 w-full flex items-center justify-between overflow-hidden rounded-lg hover:bg-linear-to-r/oklch border border-transparent hover:border-[#5D6B68]/10 from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50">
           {data.user.image ? (
             <Avatar>
               <AvatarImage src={data.user.image} alt={data.user.name} />
@@ -88,7 +88,7 @@ export function DashboardUserButton() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="rounded-lg border border-border/10 gap-3 p-3 h-16 w-full flex items-center justify-between bg-white/5 hover:bg-white/10 overflow-hidden">
+      <DropdownMenuTrigger className="gap-3 p-3 h-16 w-full flex items-center justify-between overflow-hidden rounded-lg hover:bg-linear-to-r/oklch border border-transparent hover:border-[#5D6B68]/10 from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50">
         {data.user.image ? (
           <Avatar>
             <AvatarImage src={data.user.image} alt={data.user.name} />

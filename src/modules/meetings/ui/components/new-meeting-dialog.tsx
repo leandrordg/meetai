@@ -1,6 +1,6 @@
 import { ResponsiveDialog } from "@/components/responsive-dialog";
+import { MeetingForm } from "@/modules/meetings/ui/components/meeting-form";
 import { useRouter } from "next/navigation";
-import { MeetingForm } from "./meeting-form";
 
 interface Props {
   open: boolean;

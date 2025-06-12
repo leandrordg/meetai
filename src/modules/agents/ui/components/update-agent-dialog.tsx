@@ -1,6 +1,6 @@
 import { ResponsiveDialog } from "@/components/responsive-dialog";
 import { AgentGetOne } from "@/modules/agents/types";
-import { AgentForm } from "./agent-form";
+import { AgentForm } from "@/modules/agents/ui/components/agent-form";
 
 interface Props {
   open: boolean;

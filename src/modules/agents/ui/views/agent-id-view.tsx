@@ -48,7 +48,7 @@ export function AgentIdView({ agentId }: Props) {
 
   const [RemoveConfirmation, confirmRemove] = useConfirm({
     title: "Você tem certeza?",
-    description: `Essa ação irá remover ${data.meetingCount} reuniões associadas`,
+    description: `Essa ação irá remover ${data.meetingCount} encontro(s) associadas`,
   });
 
   async function handleRemoveAgent() {
@@ -87,8 +87,8 @@ export function AgentIdView({ agentId }: Props) {
 
             <Badge variant="outline" className="flex items-center gap-2">
               <VideoIcon className="size-4 text-blue-700" />
-              {data.meetingCount}{" "}
-              {data.meetingCount === 1 ? "reunião" : "reuniões"}
+              {data.meetingCount}
+              {data.meetingCount === 1 ? " encontro" : " encontros"}
             </Badge>
 
             <div className="flex flex-col gap-4">

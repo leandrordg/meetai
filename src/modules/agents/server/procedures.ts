@@ -16,43 +16,6 @@ import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
 import { z } from "zod/v4";
 
 export const agentsRouter = createTRPCRouter({
-  update: protectedProcedure
-    .input(agentsUpdateSchema)
-    .mutation(async ({ input, ctx }) => {
-      const [updatedAgent] = await db
-        .update(agents)
-        .set(input)
-        .where(
-          and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
-        )
-        .returning();
-
-      if (!updatedAgent)
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Agente não encontrado!",
-        });
-
-      return updatedAgent;
-    }),
-  remove: protectedProcedure
-    .input(z.object({ id: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const [removedAgent] = await db
-        .delete(agents)
-        .where(
-          and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
-        )
-        .returning();
-
-      if (!removedAgent)
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Agente não encontrado!",
-        });
-
-      return removedAgent;
-    }),
   getOne: protectedProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input, ctx }) => {
@@ -132,5 +95,44 @@ export const agentsRouter = createTRPCRouter({
         .returning();
 
       return createdAgent;
+    }),
+
+  update: protectedProcedure
+    .input(agentsUpdateSchema)
+    .mutation(async ({ input, ctx }) => {
+      const [updatedAgent] = await db
+        .update(agents)
+        .set(input)
+        .where(
+          and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
+        )
+        .returning();
+
+      if (!updatedAgent)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Agente não encontrado!",
+        });
+
+      return updatedAgent;
+    }),
+
+  remove: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const [removedAgent] = await db
+        .delete(agents)
+        .where(
+          and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id))
+        )
+        .returning();
+
+      if (!removedAgent)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Agente não encontrado!",
+        });
+
+      return removedAgent;
     }),
 });

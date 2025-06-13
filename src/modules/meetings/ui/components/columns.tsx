@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { cn, formatMeetingStatus } from "@/lib/utils";
 import { MeetingGetMany } from "@/modules/meetings/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { format } from "date-fns";
+import { formatDistance } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import humanizeDuration from "humanize-duration";
 import {
   CircleCheckIcon,
@@ -67,7 +68,10 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
 
           <span className="text-sm text-muted-foreground">
             {row.original.startedAt
-              ? format(row.original.startedAt, "MMM d")
+              ? formatDistance(new Date(row.original.startedAt), new Date(), {
+                  locale: ptBR,
+                  addSuffix: true,
+                })
               : ""}
           </span>
         </div>

@@ -1,5 +1,6 @@
 import { MeetingStatus } from "@/modules/meetings/types";
 import { clsx, type ClassValue } from "clsx";
+import humanizeDuration from "humanize-duration";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -19,4 +20,13 @@ export function formatMeetingStatus(status: MeetingStatus | string) {
     case "cancelled":
       return "Cancelado";
   }
+}
+
+export function formatDuration(seconds: number) {
+  return humanizeDuration(seconds * 1000, {
+    largest: 1,
+    round: true,
+    units: ["h", "m", "s"],
+    language: "pt",
+  });
 }

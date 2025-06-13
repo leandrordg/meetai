@@ -2,12 +2,11 @@
 
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
-import { cn, formatMeetingStatus } from "@/lib/utils";
+import { cn, formatDuration, formatMeetingStatus } from "@/lib/utils";
 import { MeetingGetMany } from "@/modules/meetings/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import humanizeDuration from "humanize-duration";
 import {
   CircleCheckIcon,
   CircleXIcon,
@@ -17,15 +16,6 @@ import {
   LoaderIcon,
   LucideIcon,
 } from "lucide-react";
-
-function formatDuration(seconds: number) {
-  return humanizeDuration(seconds * 1000, {
-    largest: 1,
-    round: true,
-    units: ["h", "m", "s"],
-    language: "pt",
-  });
-}
 
 type MeetingStatus = MeetingGetMany[number]["status"];
 

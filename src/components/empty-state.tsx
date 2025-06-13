@@ -7,7 +7,7 @@ interface Props {
 
 export function EmptyState({ title, description }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center px-4 md:px-8">
       <Image src="empty.svg" alt="Empty" width={240} height={240} />
 
       <div className="flex flex-col gap-6 max-w-md mx-auto text-center">

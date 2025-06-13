@@ -2,7 +2,6 @@
 
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -77,115 +76,98 @@ export function SignInView() {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="p-6 md:p-8">
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-col items-center text-center">
-                  <h1 className="text-2xl font-bold">Bem vindo de volta</h1>
-                  <p className="text-muted-foreground text-balance">
-                    Entre com sua conta para continuar
-                  </p>
-                </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col md:text-center">
+              <h1 className="text-2xl font-bold">Bem vindo de volta</h1>
+              <p className="text-muted-foreground">
+                Faça login na sua conta para continuar.
+              </p>
+            </div>
 
-                <div className="grid gap-3">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="email@exemplo.com"
-                            disabled={pending}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Senha</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="password"
-                            placeholder="********"
-                            disabled={pending}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                {!!error && (
-                  <Alert className="bg-destructive/10 border-none">
-                    <OctagonAlertIcon className="size-4 !text-destructive" />
-                    <AlertTitle>{error}</AlertTitle>
-                  </Alert>
+            <div className="grid gap-3">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="email@exemplo.com"
+                        disabled={pending}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
+              />
 
-                <Button type="submit" disabled={pending || !isDirty}>
-                  Continuar
-                </Button>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="********"
+                        disabled={pending}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-                <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                  <span className="bg-card text-muted-foreground relative z-10 px-2">
-                    Ou continue com
-                  </span>
-                </div>
+            {!!error && (
+              <Alert className="bg-destructive/10 border-none">
+                <OctagonAlertIcon className="size-4 !text-destructive" />
+                <AlertTitle>{error}</AlertTitle>
+              </Alert>
+            )}
 
-                <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    disabled={pending}
-                    onClick={() => onSocial("google")}
-                  >
-                    <FaGoogle />
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    disabled={pending}
-                    onClick={() => onSocial("github")}
-                  >
-                    <FaGithub />
-                  </Button>
-                </div>
+            <Button type="submit" disabled={pending || !isDirty}>
+              Continuar
+            </Button>
 
-                <div className="text-center text-sm">
-                  Não tem uma conta?{" "}
-                  <Link
-                    href="/sign-up"
-                    className="underline underline-offset-4"
-                  >
-                    Criar uma conta
-                  </Link>
-                </div>
-              </div>
-            </form>
-          </Form>
+            <div className="grid grid-cols-2 gap-4">
+              <Button
+                type="button"
+                variant="outline"
+                disabled={pending}
+                onClick={() => onSocial("google")}
+              >
+                <FaGoogle />
+              </Button>
 
-          <div className="bg-radial from-sidebar-accent to-sidebar relative hidden md:flex flex-col gap-4 items-center justify-center">
-            <img src="/logo.svg" alt="logo" className="size-24" />
-            <p className="text-2xl font-semibold text-white">meetAI</p>
+              <Button
+                type="button"
+                variant="outline"
+                disabled={pending}
+                onClick={() => onSocial("github")}
+              >
+                <FaGithub />
+              </Button>
+            </div>
+
+            <div className="md:text-center text-sm">
+              Não tem uma conta?{" "}
+              <Link href="/sign-up" className="underline underline-offset-2">
+                Criar uma conta
+              </Link>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </form>
+      </Form>
 
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
+      <div className="text-muted-foreground *:[a]:text-foreground md:text-center md:text-balance text-xs *:[a]:underline underline-offset-2">
         Ao clicar em &quot;Continuar&quot;, você concorda com nossos{" "}
         <Link href="/terms-of-service">Termos de Serviço</Link> e{" "}
         <Link href="/privacy-policy">Política de Privacidade</Link>.

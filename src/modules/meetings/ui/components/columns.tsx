@@ -2,7 +2,7 @@
 
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { cn, formatMeetingStatus } from "@/lib/utils";
 import { MeetingGetMany } from "@/modules/meetings/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
@@ -94,7 +94,7 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
               row.original.status === "processing" && "animate-spin"
             )}
           />
-          {row.original.status}
+          {formatMeetingStatus(row.original.status)}
         </Badge>
       );
     },

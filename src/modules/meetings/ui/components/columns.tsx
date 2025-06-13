@@ -80,6 +80,10 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
     cell: ({ row }) => {
       const Icon = statusIconMap[row.original.status];
 
+      const animateSpin =
+        row.original.status === "processing" ||
+        row.original.status === "active";
+
       return (
         <Badge
           variant="outline"
@@ -88,12 +92,7 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
             statusColorMap[row.original.status]
           )}
         >
-          <Icon
-            className={cn(
-              "size-4",
-              row.original.status === "processing" && "animate-spin"
-            )}
-          />
+          <Icon className={cn("size-4", animateSpin && "animate-spin")} />
           {formatMeetingStatus(row.original.status)}
         </Badge>
       );

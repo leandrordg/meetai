@@ -47,8 +47,8 @@ export function DashboardSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="flex items-start justify-center text-sidebar-accent-foreground h-16">
-        <Link href="/" className="flex items-center gap-2">
+      <SidebarHeader className="flex items-start justify-center px-4 h-16">
+        <Link href="/" className="flex items-center gap-4">
           <Image
             src="/logo.svg"
             alt="meetAI"
@@ -56,7 +56,7 @@ export function DashboardSidebar() {
             width={32}
             className="object-contain"
           />
-          <span className="ml-2 text-lg font-semibold tracking-tight">
+          <span className="text-lg font-semibold tracking-tight">
             meetAI
           </span>
         </Link>

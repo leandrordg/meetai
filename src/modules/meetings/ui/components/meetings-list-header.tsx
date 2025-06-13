@@ -1,12 +1,31 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { DEFAULT_PAGE } from "@/constants";
+import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
+import { AgentIdFilter } from "@/modules/meetings/ui/components/agent-id-filter";
+import { MeetingsSearchFilter } from "@/modules/meetings/ui/components/meetings-search-filter";
 import { NewMeetingDialog } from "@/modules/meetings/ui/components/new-meeting-dialog";
-import { PlusIcon } from "lucide-react";
+import { StatusFilter } from "@/modules/meetings/ui/components/status-filter";
+import { PlusIcon, XCircleIcon } from "lucide-react";
 import { useState } from "react";
 
 export function MeetingsListHeader() {
+  const [filters, setFilters] = useMeetingsFilters();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const isAnyFilterModified =
+    !!filters.status || !!filters.agentId || !!filters.search;
+
+  const onClearFilters = () => {
+    setFilters({
+      page: DEFAULT_PAGE,
+      status: null,
+      agentId: "",
+      search: "",
+    });
+  };
 
   return (
     <>
@@ -18,13 +37,25 @@ export function MeetingsListHeader() {
 
           <Button type="button" onClick={() => setIsDialogOpen(true)}>
             <PlusIcon />
-            Novo encontro
+            <span className="hidden md:block">Novo encontro</span>
           </Button>
         </div>
 
-        <div className="flex items-center w-full gap-2 p-1">
-          TODO: add meeting form
-        </div>
+        <ScrollArea>
+          <div className="flex items-center w-full gap-2">
+            <MeetingsSearchFilter />
+            <StatusFilter />
+            <AgentIdFilter />
+
+            {isAnyFilterModified && (
+              <Button variant="outline" onClick={onClearFilters}>
+                <XCircleIcon />
+                Limpar
+              </Button>
+            )}
+          </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
     </>
   );

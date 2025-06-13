@@ -56,7 +56,7 @@ export function DashboardUserButton() {
             <GeneratedAvatar
               seed={data.user.name}
               variant="initials"
-              className="size-9 mr-3"
+              className="size-9"
             />
           )}
           <div className="flex flex-col gap-0.5 text-left overflow-hidden flex-1 min-w-0">

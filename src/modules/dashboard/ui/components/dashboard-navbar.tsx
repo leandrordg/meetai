@@ -28,7 +28,8 @@ export function DashboardNavbar() {
   return (
     <>
       <DashboardCommand open={commandOpen} setOpen={setCommandOpen} />
-      <nav className="flex px-4 gap-2 items-center py-3 border-b bg-background">
+
+      <nav className="flex px-4 gap-4 items-center h-16 border-b bg-background">
         <Button onClick={toggleSidebar} variant="outline" size="icon">
           {state === "collapsed" || isMobile ? (
             <PanelLeftIcon />
@@ -40,7 +41,7 @@ export function DashboardNavbar() {
         <Button
           variant="outline"
           size="sm"
-          className="h-9 w-60 justify-start font-normal text-muted-foreground hover:text-muted-foreground"
+          className="h-9 flex-1 md:max-w-60 justify-start font-normal text-muted-foreground hover:text-muted-foreground"
           onClick={() => setCommandOpen((value) => !value)}
         >
           <SearchIcon />

@@ -23,6 +23,7 @@ function formatDuration(seconds: number) {
     largest: 1,
     round: true,
     units: ["h", "m", "s"],
+    language: "pt",
   });
 }
 
@@ -107,7 +108,7 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
     header: "Duração",
     cell: ({ row }) => {
       return (
-        <Badge variant="outline" className="capitalize flex items-center gap-2">
+        <Badge variant="outline" className="flex items-center gap-2">
           <ClockFadingIcon className="size-4 text-blue-700" />
           {row.original.duration
             ? formatDuration(row.original.duration)

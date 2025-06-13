@@ -85,6 +85,8 @@ export function AgentForm({ onSuccess, onCancel, initialValues }: Props) {
     }
   }
 
+  const { isDirty } = form.formState;
+
   return (
     <Form {...form}>
       <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -136,7 +138,7 @@ export function AgentForm({ onSuccess, onCancel, initialValues }: Props) {
               Cancelar
             </Button>
           )}
-          <Button type="submit" disabled={isPending}>
+          <Button type="submit" disabled={isPending || !isDirty}>
             {isEdit ? "Salvar alterações" : "Criar agente"}
           </Button>
         </div>

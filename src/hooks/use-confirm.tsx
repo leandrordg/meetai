@@ -42,7 +42,7 @@ export function useConfirm({
       onOpenChange={handleClose}
       description={description}
     >
-      <div className="pt-4 w-full flex flex-col-reverse gap-2 lg:flex-row items-center justify-end">
+      <div className="w-full flex flex-col-reverse gap-2 lg:flex-row items-center justify-end">
         <Button
           type="button"
           variant="outline"

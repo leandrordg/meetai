@@ -38,6 +38,7 @@ export default async function MeetingsPage({ searchParams }: Props) {
   return (
     <>
       <MeetingsListHeader />
+      
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<MeetingsViewLoading />}>
           <ErrorBoundary fallback={<MeetingsViewError />}>

@@ -96,6 +96,8 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
     }
   }
 
+  const { isDirty } = form.formState;
+
   return (
     <>
       <NewAgentDialog
@@ -174,7 +176,7 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
                 Cancelar
               </Button>
             )}
-            <Button type="submit" disabled={isPending}>
+            <Button type="submit" disabled={isPending || !isDirty}>
               {isEdit ? "Salvar alterações" : "Criar encontro"}
             </Button>
           </div>

@@ -14,13 +14,19 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { DashboardTrial } from "@/modules/dashboard/ui/components/dashboard-trial";
 import { DashboardUserButton } from "@/modules/dashboard/ui/components/dashboard-user-button";
-import { BotIcon, StarIcon, VideoIcon } from "lucide-react";
+import { BotIcon, HomeIcon, SparklesIcon, VideoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const firstSection = [
+  {
+    icon: HomeIcon,
+    label: "Início",
+    href: "/",
+  },
   {
     icon: VideoIcon,
     label: "Encontros",
@@ -35,15 +41,15 @@ const firstSection = [
 
 const secondSection = [
   {
-    icon: StarIcon,
+    icon: SparklesIcon,
     label: "Upgrade",
     href: "/upgrade",
   },
 ];
 
 export function DashboardSidebar() {
-  const { isMobile, toggleSidebar } = useSidebar();
   const pathname = usePathname();
+  const { isMobile, toggleSidebar } = useSidebar();
 
   return (
     <Sidebar>
@@ -56,9 +62,7 @@ export function DashboardSidebar() {
             width={32}
             className="object-contain"
           />
-          <span className="text-lg font-semibold tracking-tight">
-            meetAI
-          </span>
+          <span className="text-lg font-semibold tracking-tight">meetAI</span>
         </Link>
       </SidebarHeader>
 
@@ -121,6 +125,7 @@ export function DashboardSidebar() {
       </SidebarContent>
 
       <SidebarFooter>
+        <DashboardTrial />
         <DashboardUserButton />
       </SidebarFooter>
     </Sidebar>

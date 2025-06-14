@@ -1,4 +1,5 @@
 import { MeetingStatus } from "@/modules/meetings/types";
+import { SubscriptionRecurringInterval } from "@polar-sh/sdk/models/components/subscriptionrecurringinterval.js";
 import { clsx, type ClassValue } from "clsx";
 import humanizeDuration from "humanize-duration";
 import { twMerge } from "tailwind-merge";
@@ -19,6 +20,19 @@ export function formatMeetingStatus(status: MeetingStatus | string) {
       return "Processando";
     case "cancelled":
       return "Cancelado";
+  }
+}
+
+export function formatRecurringInterval(
+  interval: SubscriptionRecurringInterval | null
+) {
+  switch (interval) {
+    case "month":
+      return "mês";
+    case "year":
+      return "ano";
+    default:
+      return "Desconhecido";
   }
 }
 

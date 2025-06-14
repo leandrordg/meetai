@@ -20,6 +20,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { authClient } from "@/lib/auth-client";
 import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
@@ -36,7 +37,7 @@ export function DashboardUserButton() {
     });
   };
 
-  if (isPending || !data?.user) return null;
+  if (isPending || !data?.user) return <Skeleton className="h-16" />;
 
   if (isMobile) {
     return (
@@ -65,7 +66,10 @@ export function DashboardUserButton() {
             <DrawerDescription>{data.user.email}</DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <Button variant="outline" onClick={() => {}}>
+            <Button
+              variant="outline"
+              onClick={() => authClient.customer.portal()}
+            >
               <CreditCardIcon />
               Pagamento
             </Button>
@@ -109,7 +113,10 @@ export function DashboardUserButton() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex items-center justify-between cursor-pointer">
+        <DropdownMenuItem
+          onClick={() => authClient.customer.portal()}
+          className="flex items-center justify-between cursor-pointer"
+        >
           Pagamento
           <CreditCardIcon className="size-4" />
         </DropdownMenuItem>

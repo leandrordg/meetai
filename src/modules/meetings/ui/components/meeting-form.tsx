@@ -20,6 +20,7 @@ import { CommandSelect } from "@/modules/meetings/ui/components/command-select";
 import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -33,6 +34,7 @@ interface Props {
 
 export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
   const trpc = useTRPC();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false);
@@ -49,12 +51,12 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
     trpc.meetings.create.mutationOptions({
       onSuccess: (data) => {
         queryClient.invalidateQueries(trpc.meetings.getMany.queryOptions({}));
-        // TODO: invalidate free tier usage
+        queryClient.invalidateQueries(trpc.premium.getFreeUsage.queryOptions());
         onSuccess?.(data.id);
       },
       onError: (error) => {
         toast.error(error.message);
-        // TODO: check if error code is forbidden, redirect to upgrade
+        if (error.data?.code === "FORBIDDEN") router.push("/upgrade");
       },
     })
   );
@@ -70,10 +72,7 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
         }
         onSuccess?.();
       },
-      onError: (error) => {
-        toast.error(error.message);
-        // TODO: check if error code is forbidden, redirect to upgrade
-      },
+      onError: (error) => toast.error(error.message),
     })
   );
 

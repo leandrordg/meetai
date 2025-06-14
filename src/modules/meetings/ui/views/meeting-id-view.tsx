@@ -39,7 +39,7 @@ export function MeetingIdView({ meetingId }: Props) {
     trpc.meetings.remove.mutationOptions({
       onSuccess: () => {
         queryClient.invalidateQueries(trpc.meetings.getMany.queryOptions({}));
-        // TODO: invalidate free tier usage
+        queryClient.invalidateQueries(trpc.premium.getFreeUsage.queryOptions());
         router.push("/meetings");
       },
       onError: (error) => toast.error(error.message),

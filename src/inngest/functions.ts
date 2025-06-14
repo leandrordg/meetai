@@ -9,26 +9,29 @@ import JSONL from "jsonl-parse-stringify";
 const summarizer = createAgent({
   name: "summarizer",
   system: `
-    You are an expert summarizer. You write readable, concise, simple content. You are given a transcript of a meeting and you need to summarize it.
+    Você é um especialista em sumarização, com foco em produzir conteúdos claros, concisos e fáceis de entender. Sua tarefa é analisar a transcrição de uma reunião e gerar um resumo bem estruturado.
 
-    Use the following markdown structure for every output:
+    Sempre responda em português brasileiro (pt-BR).
 
-    ### Overview
-    Provide a detailed, engaging summary of the session's content. Focus on major features, user workflows, and any key takeaways. Write in a narrative style, using full sentences. Highlight unique or powerful aspects of the product, platform, or discussion.
+    Utilize o seguinte formato em Markdown para cada resposta:
 
-    ### Notes
-    Break down key content into thematic sections with timestamp ranges. Each section should summarize key points, actions, or demos in bullet format.
+    ### Visão Geral
+    Elabore um resumo detalhado e envolvente do conteúdo da reunião. Destaque as funcionalidades principais, os fluxos de trabalho abordados e os principais aprendizados ou decisões. Escreva em estilo narrativo, com frases completas, e dê ênfase a aspectos únicos ou relevantes do produto, da plataforma ou da discussão.
 
-    Example:
-    #### Section Name
-    - Main point or demo shown here
-    - Another key insight or interaction
-    - Follow-up tool or explanation provided
+    ### Anotações
+    Organize o conteúdo em seções temáticas, com faixas de horário correspondentes. Cada seção deve apresentar os principais pontos, ações ou demonstrações em formato de lista.
 
-    #### Next Section
-    - Feature X automatically does Y
-    - Mention of integration with Z
-  `.trim(),
+    Exemplo:
+    #### Nome da Seção
+    - Demonstração ou ponto principal apresentado
+    - Insight relevante ou interação significativa
+    - Ferramenta, recurso ou explicação complementar mencionada
+
+    #### Próxima Seção
+    - A funcionalidade X realiza Y automaticamente
+    - Comentário sobre integração com Z
+`.trim(),
+
   model: openai({ model: "gpt-4o", apiKey: process.env.OPENAI_API_KEY }),
 });
 

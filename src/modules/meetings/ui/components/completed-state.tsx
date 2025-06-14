@@ -5,6 +5,8 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatDuration } from "@/lib/utils";
 import { MeetingGetOne } from "@/modules/meetings/types";
+import { ChatProvider } from "@/modules/meetings/ui/components/chat-provider";
+import { Transcript } from "@/modules/meetings/ui/components/transcript";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import {
@@ -23,7 +25,7 @@ interface Props {
 export function CompletedState({ data }: Props) {
   return (
     <div className="flex flex-col gap-4">
-      <Tabs defaultValue="summary">
+      <Tabs defaultValue="summary" className="gap-4">
         <div className="bg-white rounded-lg border px-3">
           <ScrollArea>
             <TabsList className="p-0 bg-background justify-start rounded-none h-13">
@@ -60,16 +62,6 @@ export function CompletedState({ data }: Props) {
           </ScrollArea>
         </div>
 
-        <TabsContent value="recording">
-          <div className="bg-white rounded-lg border p-4">
-            <video
-              src={data.recordingUrl!}
-              className="w-full rounded-lg"
-              controls
-            />
-          </div>
-        </TabsContent>
-
         <TabsContent value="summary">
           <div className="bg-white rounded-lg border">
             <div className="p-4 gap-4 flex flex-col col-span-5">
@@ -93,21 +85,41 @@ export function CompletedState({ data }: Props) {
                 </p>
               </div>
 
-              <div className="flex gap-2 items-center">
-                <SparklesIcon className="size-4" />
-                <p>Resumo geral</p>
-              </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex gap-2 items-center">
+                  <SparklesIcon className="size-4" />
+                  <p>Resumo geral</p>
+                </div>
 
-              <Badge variant="outline" className="flex items-center gap-2">
-                <ClockFadingIcon className="size-4 text-blue-700" />
-                {data.duration ? formatDuration(data.duration) : "N/A"}
-              </Badge>
+                <Badge variant="outline" className="flex items-center gap-2">
+                  <ClockFadingIcon className="size-4 text-blue-700" />
+                  {data.duration ? formatDuration(data.duration) : "N/A"}
+                </Badge>
+              </div>
 
               <div>
                 <Markdown>{data.summary}</Markdown>
               </div>
             </div>
           </div>
+        </TabsContent>
+
+        <TabsContent value="transcript">
+          <Transcript meetingId={data.id} />
+        </TabsContent>
+
+        <TabsContent value="recording">
+          <div className="bg-white rounded-lg border p-4">
+            <video
+              src={data.recordingUrl!}
+              className="w-full rounded-lg"
+              controls
+            />
+          </div>
+        </TabsContent>
+
+        <TabsContent value="chat">
+          <ChatProvider meetingId={data.id} meetingName={data.name} />
         </TabsContent>
       </Tabs>
     </div>

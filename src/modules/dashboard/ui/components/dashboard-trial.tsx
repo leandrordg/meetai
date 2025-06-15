@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { useSidebar } from "@/components/ui/sidebar";
 import {
   MAX_FREE_AGENTS,
   MAX_FREE_MEETINGS,
@@ -13,6 +14,7 @@ import Link from "next/link";
 
 export function DashboardTrial() {
   const trpc = useTRPC();
+  const { isMobile, toggleSidebar } = useSidebar();
 
   const { data } = useQuery(trpc.premium.getFreeUsage.queryOptions());
 
@@ -28,7 +30,7 @@ export function DashboardTrial() {
 
         <div className="flex flex-col gap-2">
           <p className="text-xs">
-            {data.agentCount}/{MAX_FREE_AGENTS} agentes
+            {data.agentCount}/{MAX_FREE_AGENTS} agentes disponíveis
           </p>
 
           <Progress value={(data.agentCount / MAX_FREE_AGENTS) * 100} />
@@ -36,13 +38,17 @@ export function DashboardTrial() {
 
         <div className="flex flex-col gap-2">
           <p className="text-xs">
-            {data.meetingCount}/{MAX_FREE_MEETINGS} encontros
+            {data.meetingCount}/{MAX_FREE_MEETINGS} reuniões disponíveis
           </p>
 
           <Progress value={(data.meetingCount / MAX_FREE_MEETINGS) * 100} />
         </div>
 
-        <Button className="mt-auto" asChild>
+        <Button
+          className="mt-auto"
+          onClick={() => isMobile && toggleSidebar()}
+          asChild
+        >
           <Link href="/upgrade">
             <SparklesIcon />
             Fazer upgrade

@@ -16,7 +16,6 @@ interface Props {
   value: string;
   className?: string;
   placeholder?: string;
-  isSearchable?: boolean;
   options: Array<{
     id: string;
     value: string;
@@ -30,7 +29,6 @@ export function CommandSelect({
   value,
   className,
   placeholder = "Selecione uma opção",
-  isSearchable = false,
   options,
   onSelect,
   onSearch,

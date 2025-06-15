@@ -3,13 +3,12 @@
 import { DataTable } from "@/components/data-table";
 import { EmptyState } from "@/components/empty-state";
 import { ErrorState } from "@/components/error-state";
-import { LoadingState } from "@/components/loading-state";
 import { useAgentsFilters } from "@/modules/agents/hooks/use-agents-filters";
 import { columns } from "@/modules/agents/ui/components/columns";
 import { DataPagination } from "@/modules/agents/ui/components/data-pagination";
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 
 export function AgentsView() {
   const trpc = useTRPC();
@@ -35,30 +34,21 @@ export function AgentsView() {
         onPageChange={(page) => setFilters({ page })}
       />
 
-      {data.items.length === 0 && (
+      {!filters.search && data.items.length === 0 && (
         <EmptyState
-          title="Crie o seu primeiro agente."
-          description="Os agentes são usados para automatizar tarefas e interagir com usuários. Você pode criar agentes personalizados para atender às suas necessidades."
+          title="Crie o seu primeiro agente!"
+          description="Agentes são IA&apos;s personalizadas que ajudam você em suas conversas e tarefas."
         />
       )}
     </div>
   );
 }
 
-export function AgentsViewLoading() {
-  return (
-    <LoadingState
-      title="Buscando agentes..."
-      description="Isso pode demorar alguns segundos..."
-    />
-  );
-}
-
 export function AgentsViewError() {
   return (
     <ErrorState
-      title="Erro ao carregar os agentes"
-      description="Tente recarregar a página ou volte mais tarde."
+      title="Erro ao carregar agentes"
+      description="Ocorreu um erro ao carregar os agentes. Tente novamente mais tarde."
     />
   );
 }

@@ -38,7 +38,7 @@ const statusColorMap: Record<MeetingStatus, string> = {
 export const columns: ColumnDef<MeetingGetMany[number]>[] = [
   {
     accessorKey: "name",
-    header: "Nome do encontro",
+    header: "Nome da reunião",
     cell: ({ row }) => (
       <div className="flex flex-col gap-1">
         <span className="font-semibold capitalize">{row.original.name}</span>

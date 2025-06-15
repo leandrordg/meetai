@@ -9,13 +9,13 @@ interface Props {
 
 export function CallActive({ onLeave, meetingName }: Props) {
   return (
-    <div className="flex flex-col justify-between p-4 h-full text-white">
+    <div className="flex flex-col justify-between p-4 h-full text-accent">
       <div className="bg-[#101213] rounded-full p-4 flex items-center gap-4">
         <Link
           href="/"
-          className="flex items-center justify-center p-1 bg-white/10 rounded-full"
+          className="flex items-center justify-center p-1 bg-background/10 rounded-full"
         >
-          <Image src="/logo.svg" width={22} height={22} alt="meetAI" />
+          <Image src="/logo.svg" width={22} height={22} alt="mindmeet" />
         </Link>
 
         <h4 className="text-base">{meetingName}</h4>

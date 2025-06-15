@@ -8,8 +8,8 @@ export function CancelledState() {
     <div className="bg-background rounded-lg p-4 md:p-8 flex flex-col gap-8 items-center justify-center">
       <EmptyState
         image="/cancelled.svg"
-        title="Encontro cancelado"
-        description="O encontro foi cancelado e não será mais realizado."
+        title="Reunião cancelada"
+        description="A reunião foi cancelada e não será mais realizada."
       />
 
       <div className="flex flex-col-reverse lg:flex-row lg:justify-center items-center gap-2 w-full">

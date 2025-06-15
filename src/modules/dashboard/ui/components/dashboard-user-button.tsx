@@ -24,7 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { authClient } from "@/lib/auth-client";
 import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 
 export function DashboardUserButton() {
   const router = useRouter();
@@ -63,7 +63,7 @@ export function DashboardUserButton() {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>{data.user.name}</DrawerTitle>
-            <DrawerDescription>{data.user.email}</DrawerDescription>
+            <DrawerDescription className="text-muted-foreground">{data.user.email}</DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
             <Button
@@ -109,7 +109,7 @@ export function DashboardUserButton() {
         <DropdownMenuLabel>
           <div className="flex flex-col">
             <p className="text-sm font-medium truncate">{data.user.name}</p>
-            <p className="text-xs truncate">{data.user.email}</p>
+            <p className="text-xs text-muted-foreground truncate">{data.user.email}</p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

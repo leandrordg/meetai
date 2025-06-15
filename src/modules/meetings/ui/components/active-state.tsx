@@ -12,8 +12,8 @@ export function ActiveState({ meetingId }: Props) {
     <div className="bg-background rounded-lg p-4 md:p-8 flex flex-col gap-8 items-center justify-center">
       <EmptyState
         image="/upcoming.svg"
-        title="Encontro ativo"
-        description="O encontro irá ser finalizado uma vez que todos os participantes saírem."
+        title="Reunião ativa"
+        description="A reunião irá ser finalizada uma vez que todos os participantes saírem."
       />
 
       <div className="flex flex-col-reverse lg:flex-row lg:justify-center items-center gap-2 w-full">

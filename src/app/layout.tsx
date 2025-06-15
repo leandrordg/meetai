@@ -1,15 +1,23 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/client";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import { NuqsAdapter } from "nuqs/adapters/next";
 import "./globals.css";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "meetAI",
-  description: "A plataforma de encontros com IA",
+  title: "Elabore Reuniões com IA - mindmeet",
+  description:
+    "Crie reuniões mais produtivas com a ajuda de uma IA que elabora pautas, define objetivos e gera atas automaticamente.",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -20,8 +28,9 @@ export default function RootLayout({
   return (
     <NuqsAdapter>
       <TRPCReactProvider>
-        <html lang="pt-BR">
+        <html lang="pt-BR" suppressHydrationWarning>
           <body className={`${montserrat.className} antialiased`}>
+            <NextTopLoader showSpinner={false} />
             <Toaster />
             {children}
           </body>

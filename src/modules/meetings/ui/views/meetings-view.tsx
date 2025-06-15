@@ -4,12 +4,11 @@ import { DataPagination } from "@/components/data-pagination";
 import { DataTable } from "@/components/data-table";
 import { EmptyState } from "@/components/empty-state";
 import { ErrorState } from "@/components/error-state";
-import { LoadingState } from "@/components/loading-state";
 import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
 import { columns } from "@/modules/meetings/ui/components/columns";
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 
 export function MeetingsView() {
   const trpc = useTRPC();
@@ -37,29 +36,20 @@ export function MeetingsView() {
         onPageChange={(page) => setFilters({ page })}
       />
 
-      {data.items.length === 0 && (
+      {!filters.search && data.items.length === 0 && (
         <EmptyState
-          title="Vamos começar criando um encontro."
-          description="Adicione encontros para interagir com outras pessoas. Encontros proporcionam uma maneira de se conectar e colaborar com outros usuários."
+          title="Vamos começar criando uma reunião."
+          description="Reuniões permitem que você converse com seus agentes de IA, obtenha resumos, transcrições e respostas personalizadas."
         />
       )}
     </div>
   );
 }
 
-export function MeetingsViewLoading() {
-  return (
-    <LoadingState
-      title="Buscando encontros..."
-      description="Isso pode demorar alguns segundos..."
-    />
-  );
-}
-
 export function MeetingsViewError() {
   return (
     <ErrorState
-      title="Erro ao buscar os encontros"
+      title="Erro ao buscar as reuniões"
       description="Tente recarregar a página ou volte mais tarde."
     />
   );

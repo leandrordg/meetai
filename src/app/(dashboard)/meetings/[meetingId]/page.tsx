@@ -1,8 +1,8 @@
+import { LoadingState } from "@/components/loading-state";
 import { auth } from "@/lib/auth";
 import {
   MeetingIdView,
   MeetingIdViewError,
-  MeetingIdViewLoading,
 } from "@/modules/meetings/ui/views/meeting-id-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
@@ -30,11 +30,9 @@ export default async function MeetingPage({ params }: Props) {
     trpc.meetings.getOne.queryOptions({ id: meetingId })
   );
 
-  // TODO: prefetch `meetings.getTranscript`
-
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<MeetingIdViewLoading />}>
+      <Suspense fallback={<LoadingState />}>
         <ErrorBoundary fallback={<MeetingIdViewError />}>
           <MeetingIdView meetingId={meetingId} />
         </ErrorBoundary>

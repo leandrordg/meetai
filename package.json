@@ -1,7 +1,13 @@
 {
-  "name": "meetai",
+  "name": "mindmeet",
   "version": "0.1.0",
   "private": true,
+  "description": "A collaborative platform for brainstorming and mind mapping with AI assistance.",
+  "author": {
+    "name": "Leandro Bertalhia",
+    "url": "https://lbertalhia.vercel.app",
+    "email": "lj251004@gmail.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -69,6 +75,7 @@
     "nanoid": "^5.1.5",
     "next": "15.3.3",
     "next-themes": "^0.4.6",
+    "nextjs-toploader": "^3.8.16",
     "nuqs": "^2.4.3",
     "openai": "^5.3.0",
     "react": "^19.0.0",

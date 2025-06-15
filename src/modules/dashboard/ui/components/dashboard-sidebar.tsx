@@ -29,7 +29,7 @@ const firstSection = [
   },
   {
     icon: VideoIcon,
-    label: "Encontros",
+    label: "Reuniões",
     href: "/meetings",
   },
   {
@@ -54,15 +54,19 @@ export function DashboardSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="flex items-start justify-center px-4 h-16">
-        <Link href="/" className="flex items-center gap-4">
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+          onClick={() => isMobile && toggleSidebar()}
+        >
           <Image
             src="/logo.svg"
-            alt="meetAI"
+            alt="mindmeet"
             height={32}
             width={32}
             className="object-contain"
           />
-          <span className="text-lg font-semibold tracking-tight">meetAI</span>
+          <span className="text-lg font-semibold tracking-tight">mindmeet</span>
         </Link>
       </SidebarHeader>
 

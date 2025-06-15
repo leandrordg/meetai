@@ -1,6 +1,6 @@
 import { ResponsiveDialog } from "@/components/responsive-dialog";
 import { MeetingForm } from "@/modules/meetings/ui/components/meeting-form";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 
 interface Props {
   open: boolean;
@@ -12,8 +12,8 @@ export function NewMeetingDialog({ open, onOpenChange }: Props) {
 
   return (
     <ResponsiveDialog
-      title="Novo encontro"
-      description="Crie um novo encontro para gerenciar suas reuniões."
+      title="Nova Reunião"
+      description="Crie uma nova reunião"
       open={open}
       onOpenChange={onOpenChange}
     >

@@ -8,8 +8,8 @@ export function ProcessingState() {
     <div className="bg-background rounded-lg p-4 md:p-8 flex flex-col gap-8 items-center justify-center">
       <EmptyState
         image="/processing.svg"
-        title="Estamos processando o encontro"
-        description="O encontro foi concluído e estamos processando os dados. Isso pode levar alguns minutos."
+        title="Estamos processando a reunião"
+        description="A reunião foi concluída e estamos processando os dados. Isso pode levar alguns minutos."
       />
 
       <div className="flex flex-col-reverse lg:flex-row lg:justify-center items-center gap-2 w-full">

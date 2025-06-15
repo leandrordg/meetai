@@ -1,5 +1,6 @@
+import { LoadingState } from "@/components/loading-state";
 import { auth } from "@/lib/auth";
-import { CallView } from "@/modules/call/ui/views/call-view";
+import { CallView, CallViewError } from "@/modules/call/ui/views/call-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { headers } from "next/headers";
@@ -30,8 +31,8 @@ export default async function CallPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <Suspense fallback={<LoadingState />}>
+        <ErrorBoundary fallback={<CallViewError />}>
           <CallView meetingId={meetingId} />
         </ErrorBoundary>
       </Suspense>

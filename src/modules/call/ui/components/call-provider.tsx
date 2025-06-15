@@ -1,9 +1,9 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { LoaderIcon } from "lucide-react";
-import { CallConnect } from "./call-connect";
 import { generateAvatar } from "@/lib/avatar";
+import { CallConnect } from "@/modules/call/ui/components/call-connect";
+import { LoaderIcon } from "lucide-react";
 
 interface Props {
   meetingId: string;
@@ -16,7 +16,7 @@ export function CallProvider({ meetingId, meetingName }: Props) {
   if (!data || isPending) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <LoaderIcon className="size-6 animate-spin text-white" />
+        <LoaderIcon className="size-6 animate-spin text-accent" />
       </div>
     );
   }

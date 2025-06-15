@@ -1,8 +1,8 @@
+import { LoadingState } from "@/components/loading-state";
 import { auth } from "@/lib/auth";
 import {
   UpgradeView,
   UpgradeViewError,
-  UpgradeViewLoading,
 } from "@/modules/premium/ui/views/upgrade-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
@@ -28,7 +28,7 @@ export default async function UpgradePage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<UpgradeViewLoading />}>
+      <Suspense fallback={<LoadingState />}>
         <ErrorBoundary fallback={<UpgradeViewError />}>
           <UpgradeView />
         </ErrorBoundary>

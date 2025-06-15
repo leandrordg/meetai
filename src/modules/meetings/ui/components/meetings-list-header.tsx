@@ -33,24 +33,24 @@ export function MeetingsListHeader() {
 
       <div className="p-4 md:px-8 flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h5 className="font-medium text-xl">Meus encontros</h5>
+          <h5 className="font-medium text-xl">Minhas reuniões</h5>
 
           <Button type="button" onClick={() => setIsDialogOpen(true)}>
             <PlusIcon />
-            <span className="hidden md:block">Novo encontro</span>
+            <span className="hidden md:block">Nova reunião</span>
           </Button>
         </div>
 
         <ScrollArea>
-          <div className="flex items-center w-full gap-2">
+          <div className="flex items-center w-full gap-2 p-0.5">
             <MeetingsSearchFilter />
             <StatusFilter />
             <AgentIdFilter />
 
             {isAnyFilterModified && (
-              <Button variant="outline" onClick={onClearFilters}>
+              <Button onClick={onClearFilters}>
                 <XCircleIcon />
-                Limpar
+                Limpar filtros
               </Button>
             )}
           </div>

@@ -26,7 +26,7 @@ export function CompletedState({ data }: Props) {
   return (
     <div className="flex flex-col gap-4">
       <Tabs defaultValue="summary" className="gap-4">
-        <div className="bg-white rounded-lg border px-3">
+        <div className="bg-background rounded-lg border px-3">
           <ScrollArea>
             <TabsList className="p-0 bg-background justify-start rounded-none h-13">
               <TabsTrigger
@@ -63,7 +63,7 @@ export function CompletedState({ data }: Props) {
         </div>
 
         <TabsContent value="summary">
-          <div className="bg-white rounded-lg border">
+          <div className="bg-background rounded-lg border">
             <div className="p-4 gap-4 flex flex-col col-span-5">
               <h2 className="text-2xl font-medium capitalize">{data.name}</h2>
               <div className="flex gap-2 items-center">
@@ -109,7 +109,7 @@ export function CompletedState({ data }: Props) {
         </TabsContent>
 
         <TabsContent value="recording">
-          <div className="bg-white rounded-lg border p-4">
+          <div className="bg-background rounded-lg border p-4">
             <video
               src={data.recordingUrl!}
               className="w-full rounded-lg"

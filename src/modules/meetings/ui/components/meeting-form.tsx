@@ -20,7 +20,7 @@ import { CommandSelect } from "@/modules/meetings/ui/components/command-select";
 import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'nextjs-toploader/app';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -111,7 +111,7 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome do encontro</FormLabel>
+                <FormLabel>Nome da reunião</FormLabel>
                 <FormControl>
                   <Input placeholder="ex. Literatura do dia" {...field} />
                 </FormControl>
@@ -176,7 +176,7 @@ export function MeetingForm({ onSuccess, onCancel, initialValues }: Props) {
               </Button>
             )}
             <Button type="submit" disabled={isPending || !isDirty}>
-              {isEdit ? "Salvar alterações" : "Criar encontro"}
+              {isEdit ? "Salvar alterações" : "Criar reunião"}
             </Button>
           </div>
         </form>

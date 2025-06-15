@@ -1,7 +1,7 @@
+import { LoadingState } from "@/components/loading-state";
 import {
   AgentIdView,
   AgentIdViewError,
-  AgentIdViewLoading,
 } from "@/modules/agents/ui/views/agent-id-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
@@ -23,7 +23,7 @@ export default async function AgentPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<AgentIdViewLoading />}>
+      <Suspense fallback={<LoadingState />}>
         <ErrorBoundary fallback={<AgentIdViewError />}>
           <AgentIdView agentId={agentId} />
         </ErrorBoundary>

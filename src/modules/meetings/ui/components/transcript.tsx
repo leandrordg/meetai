@@ -27,12 +27,12 @@ export function Transcript({ meetingId }: Props) {
   );
 
   return (
-    <div className="bg-white rounded-lg border p-4 flex flex-col gap-4 w-full">
+    <div className="bg-background rounded-lg border p-4 flex flex-col gap-4 w-full">
       <div className="relative">
         <Input
           value={searchQuery}
           placeholder="Pesquisar transcrição..."
-          className="h-9 bg-white min-w-48 pl-7"
+          className="h-9 bg-background min-w-48 pl-7"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <SearchIcon className="size-4 absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground" />

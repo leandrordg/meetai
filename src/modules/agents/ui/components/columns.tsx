@@ -31,12 +31,12 @@ export const columns: ColumnDef<AgentGetMany[number]>[] = [
   },
   {
     accessorKey: "meetingCount",
-    header: "Encontros",
+    header: "Reuniões",
     cell: ({ row }) => (
       <Badge variant="outline" className="flex items-center gap-2">
         <VideoIcon className="size-4 text-blue-700" />
         {row.original.meetingCount}
-        {row.original.meetingCount === 1 ? " encontro" : " encontros"}
+        {row.original.meetingCount === 1 ? " reunião" : " reuniões"}
       </Badge>
     ),
   },

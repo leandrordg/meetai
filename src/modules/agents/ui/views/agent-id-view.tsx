@@ -2,7 +2,6 @@
 
 import { ErrorState } from "@/components/error-state";
 import { GeneratedAvatar } from "@/components/generated-avatar";
-import { LoadingState } from "@/components/loading-state";
 import { Badge } from "@/components/ui/badge";
 import { useConfirm } from "@/hooks/use-confirm";
 import { AgentIdViewHeader } from "@/modules/agents/ui/components/agent-id-view-header";
@@ -14,7 +13,7 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { VideoIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -46,7 +45,7 @@ export function AgentIdView({ agentId }: Props) {
 
   const [RemoveConfirmation, confirmRemove] = useConfirm({
     title: "Você tem certeza?",
-    description: `Essa ação irá remover ${data.meetingCount} encontro(s) associadas`,
+    description: `Essa ação irá remover ${data.meetingCount} reunião(ões) agendada(s)`,
   });
 
   async function handleRemoveAgent() {
@@ -72,7 +71,7 @@ export function AgentIdView({ agentId }: Props) {
           onRemove={handleRemoveAgent}
         />
 
-        <div className="bg-white rounded-lg border">
+        <div className="bg-background rounded-lg border">
           <div className="p-4 gap-5 flex flex-col col-span-5">
             <div className="flex items-center gap-3">
               <GeneratedAvatar
@@ -86,7 +85,7 @@ export function AgentIdView({ agentId }: Props) {
             <Badge variant="outline" className="flex items-center gap-2">
               <VideoIcon className="size-4 text-blue-700" />
               {data.meetingCount}
-              {data.meetingCount === 1 ? " encontro" : " encontros"}
+              {data.meetingCount === 1 ? " reunião" : " reuniões"}
             </Badge>
 
             <div className="flex flex-col gap-4">
@@ -100,20 +99,11 @@ export function AgentIdView({ agentId }: Props) {
   );
 }
 
-export function AgentIdViewLoading() {
-  return (
-    <LoadingState
-      title="Buscando agente..."
-      description="Isso pode demorar alguns segundos..."
-    />
-  );
-}
-
 export function AgentIdViewError() {
   return (
     <ErrorState
       title="Erro ao carregar o agente"
-      description="Ocorreu um erro ao tentar carregar o agente."
+      description="O agente que você está tentando acessar não existe ou foi removido."
     />
   );
 }

@@ -33,17 +33,17 @@ export function AgentsListHeader() {
         </div>
 
         <ScrollArea>
-          <div className="flex items-center w-full gap-2">
+          <div className="flex items-center w-full gap-2 p-0.5">
             <AgentsSearchFilters />
 
             {isAnyFilterModified && (
-              <Button variant="outline" onClick={onClearFilters}>
+              <Button onClick={onClearFilters}>
                 <XCircleIcon />
                 Limpar filtros
               </Button>
             )}
           </div>
-          
+
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { CallUI } from "@/modules/call/ui/components/call-ui";
 import { useTRPC } from "@/trpc/client";
 import {
   Call,
@@ -12,7 +13,6 @@ import "@stream-io/video-react-sdk/dist/css/styles.css";
 import { useMutation } from "@tanstack/react-query";
 import { LoaderIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { CallUI } from "./call-ui";
 
 interface Props {
   meetingId: string;
@@ -74,7 +74,7 @@ export function CallConnect({
   if (!client || !call) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <LoaderIcon className="size-6 animate-spin text-white" />
+        <LoaderIcon className="size-6 animate-spin text-accent" />
       </div>
     );
   }

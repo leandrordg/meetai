@@ -1,5 +1,6 @@
 "use client";
 
+import { PasswordInput } from "@/components/password-input";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,15 +16,15 @@ import { authClient } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { z } from "zod/v4";
 
 const formSchema = z.object({
-  email: z.email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  email: z.email("E-mail inválido"),
+  password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
 });
 
 export function SignInView() {
@@ -80,7 +81,7 @@ export function SignInView() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col md:text-center">
-              <h1 className="text-2xl font-bold">Bem vindo de volta</h1>
+              <h1 className="text-2xl font-bold">Bem vindo de volta!</h1>
               <p className="text-muted-foreground">
                 Faça login na sua conta para continuar.
               </p>
@@ -113,7 +114,7 @@ export function SignInView() {
                   <FormItem>
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
-                      <Input
+                      <PasswordInput
                         type="password"
                         placeholder="********"
                         disabled={pending}

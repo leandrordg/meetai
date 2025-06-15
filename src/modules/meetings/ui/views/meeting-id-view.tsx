@@ -1,7 +1,6 @@
 "use client";
 
 import { ErrorState } from "@/components/error-state";
-import { LoadingState } from "@/components/loading-state";
 import { useConfirm } from "@/hooks/use-confirm";
 import { ActiveState } from "@/modules/meetings/ui/components/active-state";
 import { CancelledState } from "@/modules/meetings/ui/components/cancelled-state";
@@ -16,7 +15,7 @@ import {
   useQueryClient,
   useSuspenseQuery,
 } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -87,31 +86,16 @@ export function MeetingIdView({ meetingId }: Props) {
         {isProcessing && <ProcessingState />}
         {isCompleted && <CompletedState data={data} />}
         {isActive && <ActiveState meetingId={meetingId} />}
-        {isUpcoming && (
-          <UpcomingState
-            meetingId={meetingId}
-            onCancelMeeting={() => {}}
-            isCancelling={false}
-          />
-        )}
+        {isUpcoming && <UpcomingState meetingId={meetingId} />}
       </div>
     </>
-  );
-}
-
-export function MeetingIdViewLoading() {
-  return (
-    <LoadingState
-      title="Buscando encontro..."
-      description="Isso pode demorar alguns segundos..."
-    />
   );
 }
 
 export function MeetingIdViewError() {
   return (
     <ErrorState
-      title="Erro ao buscar o encontro"
+      title="Erro ao buscar a reunião"
       description="Tente recarregar a página ou volte mais tarde."
     />
   );

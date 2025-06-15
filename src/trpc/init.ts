@@ -35,46 +35,48 @@ export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
 
 export const premiumProcedure = (entity: "meetings" | "agents") =>
   protectedProcedure.use(async ({ ctx, next }) => {
+    const userId = ctx.auth.user.id;
+
     const customer = await polarClient.customers.getStateExternal({
-      externalId: ctx.auth.user.id,
+      externalId: userId,
     });
 
-    const [userMeetings] = await db
-      .select({
-        count: count(meetings.id),
-      })
-      .from(meetings)
-      .where(eq(meetings.userId, ctx.auth.user.id));
-
-    const [userAgents] = await db
-      .select({
-        count: count(agents.id),
-      })
-      .from(agents)
-      .where(eq(agents.userId, ctx.auth.user.id));
-
     const isPremium = customer.activeSubscriptions.length > 0;
-    const isFreeAgentLimitReached = userAgents.count >= MAX_FREE_AGENTS;
-    const isFreeMeetingLimitReached = userMeetings.count >= MAX_FREE_MEETINGS;
 
-    const shouldThrowMeetingError =
-      entity === "meetings" && isFreeMeetingLimitReached && !isPremium;
+    if (entity === "meetings") {
+      const [userMeetings] = await db
+        .select({
+          count: count(meetings.id),
+        })
+        .from(meetings)
+        .where(eq(meetings.userId, userId));
 
-    const shouldThrowAgentError =
-      entity === "agents" && isFreeAgentLimitReached && !isPremium;
+      const isFreeMeetingLimitReached =
+        userMeetings.count >= MAX_FREE_MEETINGS && !isPremium;
 
-    if (shouldThrowMeetingError) {
-      throw new TRPCError({
-        code: "FORBIDDEN",
-        message: "Limite de encontros gratuitos atingido.",
-      });
-    }
+      if (isFreeMeetingLimitReached) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Você atingiu o limite de reuniões gratuitas.",
+        });
+      }
+    } else if (entity === "agents") {
+      const [userAgents] = await db
+        .select({
+          count: count(agents.id),
+        })
+        .from(agents)
+        .where(eq(agents.userId, userId));
 
-    if (shouldThrowAgentError) {
-      throw new TRPCError({
-        code: "FORBIDDEN",
-        message: "Limite de agentes gratuitos atingido.",
-      });
+      const isFreeAgentLimitReached =
+        userAgents.count >= MAX_FREE_AGENTS && !isPremium;
+
+      if (isFreeAgentLimitReached) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Você atingiu o limite de agentes gratuitos.",
+        });
+      }
     }
 
     return next({ ctx: { ...ctx, customer } });

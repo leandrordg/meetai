@@ -10,7 +10,7 @@ export function AgentsSearchFilters() {
     <div className="relative">
       <Input
         placeholder="Buscar pelo nome"
-        className="h-9 bg-white min-w-48 pl-7"
+        className="h-9 bg-background min-w-48 pl-7"
         value={filters.search}
         onChange={(e) =>
           setFilters({ search: e.target.value, page: DEFAULT_PAGE })

@@ -1,5 +1,6 @@
 "use client";
 
+import { PasswordInput } from "@/components/password-input";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +16,7 @@ import { authClient } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -23,15 +24,15 @@ import { z } from "zod/v4";
 
 const formSchema = z
   .object({
-    name: z.string().nonempty(),
-    email: z.email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    name: z.string().nonempty("Nome obrigatório"),
+    email: z.email("E-mail inválido"),
+    password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
     confirmPassword: z
       .string()
-      .min(8, "Password must be at least 8 characters"),
+      .min(8, "A confirmação de senha deve ter pelo menos 8 caracteres"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords must match",
+    message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });
 
@@ -92,7 +93,7 @@ export function SignUpView() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col md:text-center">
-              <h1 className="text-2xl font-bold">Vamos começar</h1>
+              <h1 className="text-2xl font-bold">Vamos começar!</h1>
               <p className="text-muted-foreground">
                 Acesse todos os recursos da plataforma.
               </p>
@@ -144,7 +145,7 @@ export function SignUpView() {
                   <FormItem>
                     <FormLabel>Senha</FormLabel>
                     <FormControl>
-                      <Input
+                      <PasswordInput
                         type="password"
                         placeholder="********"
                         disabled={pending}
@@ -163,7 +164,7 @@ export function SignUpView() {
                   <FormItem>
                     <FormLabel>Confirmar Senha</FormLabel>
                     <FormControl>
-                      <Input
+                      <PasswordInput
                         type="password"
                         placeholder="********"
                         disabled={pending}

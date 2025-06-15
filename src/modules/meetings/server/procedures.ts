@@ -59,7 +59,7 @@ export const meetingsRouter = createTRPCRouter({
       if (!existingMeeting) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Encontro não encontrado",
+          message: "Reunião não encontrada",
         });
       }
 
@@ -177,7 +177,7 @@ export const meetingsRouter = createTRPCRouter({
       if (!existingMeeting)
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Encontro não encontrado",
+          message: "Reunião não encontrada",
         });
 
       return existingMeeting;
@@ -320,7 +320,7 @@ export const meetingsRouter = createTRPCRouter({
       if (!updatedMeeting)
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Encontro não encontrado",
+          message: "Reunião não encontrada",
         });
 
       return updatedMeeting;
@@ -339,7 +339,7 @@ export const meetingsRouter = createTRPCRouter({
       if (!removedMeeting)
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "Encontro não encontrado",
+          message: "Reunião não encontrada",
         });
 
       return removedMeeting;

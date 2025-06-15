@@ -12,14 +12,7 @@ interface Props {
 export function ChatProvider({ meetingId, meetingName }: Props) {
   const { data, isPending } = authClient.useSession();
 
-  if (isPending || !data?.user) {
-    return (
-      <LoadingState
-        title="Carregando..."
-        description="Aguarde enquanto carregamos as informações do chat."
-      />
-    );
-  }
+  if (isPending || !data?.user) return <LoadingState />;
 
   return (
     <ChatUI

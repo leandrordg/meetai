@@ -41,7 +41,7 @@ export function MeetingIdViewHeader({
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink className="font-medium text-xl" asChild>
-              <Link href="/meetings">Meus encontros</Link>
+              <Link href="/meetings">Minhas reuniões</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator className="text-foreground text-xl font-medium">

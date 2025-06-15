@@ -52,17 +52,10 @@ export function ChatUI({ meetingId, userId, userName, userImage }: Props) {
     setChannel(channel);
   }, [client, meetingId, userId]);
 
-  if (!client || !channel) {
-    return (
-      <LoadingState
-        title="Carregando..."
-        description="Aguarde enquanto carregamos as informações do chat."
-      />
-    );
-  }
+  if (!client || !channel) return <LoadingState />;
 
   return (
-    <div className="bg-white rounded-lg border overflow-hidden">
+    <div className="bg-background rounded-lg border overflow-hidden">
       <Chat client={client}>
         <Channel channel={channel}>
           <Window>

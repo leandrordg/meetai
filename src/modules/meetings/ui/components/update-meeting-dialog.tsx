@@ -15,8 +15,8 @@ export function UpdateMeetingDialog({
 }: Props) {
   return (
     <ResponsiveDialog
-      title="Editar encontro"
-      description="Altere os detalhes do encontro."
+      title="Editar Reunião"
+      description="Altere os detalhes do evento"
       open={open}
       onOpenChange={onOpenChange}
     >

@@ -14,7 +14,7 @@ export function CallEnded() {
           </div>
 
           <Button asChild>
-            <Link href="/meetings">Voltar para os encontros</Link>
+            <Link href="/meetings">Voltar para as reuniões</Link>
           </Button>
         </div>
       </div>
